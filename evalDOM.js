@@ -101,7 +101,7 @@ module.exports = function evalDOM() {
     div.style.cssText = [
       'position:absolute',
       'left:-99999px',
-	    `height:${fontSize}`,
+      `height:${fontSize}`,
       `font-size:${fontSize}`,
       `font-weight:${fontWeight}`,
       'opacity:0'

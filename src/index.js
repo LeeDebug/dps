@@ -9,6 +9,7 @@ const { log, getAgrType, Spinner, calcText, genArgs } = require('./utils');
 const currDir = process.cwd();
 
 class DrawPageStructure {
+
   constructor({
       url,
       output = {},
@@ -58,7 +59,9 @@ class DrawPageStructure {
         }
       }
   }
+
   async generateSkeletonHTML(page) {
+    console.log('======= func generateSkeletonHTML:')
     let html = '';
 
     try {
@@ -105,6 +108,7 @@ class DrawPageStructure {
     }
     return html;
   }
+
   writeToFilepath(filepath, html) {
     let fileHTML = fs.readFileSync(filepath);
     let $ = cheerio.load(fileHTML, {
@@ -113,20 +117,27 @@ class DrawPageStructure {
     $(this.injectSelector).html(html);
     fs.writeFileSync(filepath, $.html('html'));
   }
+
   async start() {
+    console.log('======= func start:')
     const pageUrl = this.url;
     const spinner = Spinner('magentaBright');
 
-	  spinner.text = '启动浏览器...';
+    spinner.text = '1. 启动浏览器...';
     const pp = await ppteer({
       device: this.device,
       headless: this.headless
     });
 
-    spinner.text = `正在打开页面：${ pageUrl }...`;
+    spinner.text = `2. 正在打开页面：${ pageUrl }...`;
     const page = await pp.openPage(pageUrl, this.extraHTTPHeaders);
+    // console.log('======= page:', page)
 
-    spinner.text = '正在生成骨架屏...';
+    // setTimeout(async () => {
+    // }, 3 * 1000)
+
+    // console.log('======= page after setTimeout:', page)
+    spinner.text = '3. 正在生成骨架屏...';
     const html = await this.generateSkeletonHTML(page);
     const userWrite = getAgrType(this.writePageStructure) === 'function';
 
@@ -144,10 +155,11 @@ class DrawPageStructure {
       this.writeToFilepath(defaultPage, html);
       this.filepath = defaultPage;
       spinner.clear();
-      log.warn(`\nskeleton has created in a default page: ${defaultPage}`);
+      log.warn(`\n(warn) skeleton has created in a default page: ${defaultPage}`);
     }
     
-    spinner.clear().succeed(`skeleton screen has created and output to ${calcText(this.filepath)}`);
+    // 骨架屏生成后的日志输出
+    spinner.clear().succeed(`(succeed) skeleton screen has created and output to ${calcText(this.filepath)}`);
 
     if (this.headless) {
       await pp.browser.close();

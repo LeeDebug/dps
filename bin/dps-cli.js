@@ -8,7 +8,10 @@ const pkg = require('../package.json')
 const defConf = require('./default.config')
 const DrawPageStructure = require('../src')
 const utils = require('../src/utils')
-
+process.on('unhandledRejection', (reason, p) => {
+  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+  // application specific logging, throwing an error, or other logic here
+});
 const currDir = process.cwd()
 
   program
