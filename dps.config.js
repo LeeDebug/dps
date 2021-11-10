@@ -6,7 +6,8 @@ const dpsConfig = {
 	// url: 'https://juejin.cn/', // 掘金（结果较为完美）
 	// url: 'https://www.baidu.com/', // 百度
 	// url: 'https://appstore-vidaa.vidaahub.com/V2.0/index-store.html#/', // 线上的 Store 应用
-	url: 'http://192.168.100.123:8083/free-U51.11.V204.14.L082621/index-free.html#/', // 本地的 Free 应用
+	// url: 'http://192.168.100.123:8083/free-U51.11.V204.14.L082621/index-free.html#/', // 本地打包的 Free 应用
+	url: 'http://192.168.100.123:8080/#/', // 本地启动的 Free 应用
 	// url: 'https://html5.toongoggles.com/', // Toon Goggles TV
 	output: {
 		filepath: '',   // 生成骨架屏的存放页面，一般为项目的入口页面
@@ -18,6 +19,8 @@ const dpsConfig = {
 	},
 	background: '#504f4f',
 	animation: 'opacity 1s linear infinite;',
+	// background: 'linear-gradient(90deg,#504f4f 25%,#5f5e5e 37%,#504f4f 63%)',
+	// animation: 'el-skeleton-loading 1.4s ease infinite;',
 	includeElement: function(node, draw) {
 		console.log('======= func includeElement >>> node:\n', node)
 		console.log('======= func includeElement >>> draw:\n', draw)
