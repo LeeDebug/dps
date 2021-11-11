@@ -1,4 +1,5 @@
 module.exports = function evalDOM() {
+  console.log('======= 11111111111111111:', 11111111111111111)
   const ELEMENTS = ['audio', 'button', 'canvas', 'code', 'img', 'input', 'pre', 'svg', 'textarea', 'video', 'xmp'];
   const blocks = [];
   const win_w = window.innerWidth;
@@ -24,6 +25,7 @@ module.exports = function evalDOM() {
   createCommonClass(classProps);
 
   function drawBlock({width, height, top, left, zIndex = 999, background = agrs.background, radius, subClas} = {}) {
+    console.log('======= func drawBlock')
     const styles = ['height:' + height + '%'];
 
     if (!subClas) {
@@ -220,6 +222,7 @@ module.exports = function evalDOM() {
     },
 
     startDraw: function() {
+      console.log('======= func startDraw')
       const $this = this;
       this.resetDOM();
       const nodes = this.rootNode.childNodes;
