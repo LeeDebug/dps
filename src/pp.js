@@ -13,7 +13,7 @@ async function pp({device = 'mobile', headless = true}) {
   const browser = await ppteer.launch({
     headless: false,
     // args: ['--no-sandbox',],
-    // devtools: true,
+    devtools: true,
   });
   
   async function openPage(url, extraHTTPHeaders) {

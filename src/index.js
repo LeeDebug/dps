@@ -102,6 +102,7 @@ class DrawPageStructure {
         }
       });
       agrs.unshift(evalScripts);
+      console.log('======= page.evaluate:', page.evaluate)
       html = await page.evaluate.apply(page, agrs);
     } catch (e) {
       log.error('\n[page.evaluate] ' + e.message);
@@ -139,6 +140,7 @@ class DrawPageStructure {
     // console.log('======= page after setTimeout:', page)
     spinner.text = '3. 正在生成骨架屏...';
     const html = await this.generateSkeletonHTML(page);
+    // console.log('======= html:', html)
     const userWrite = getAgrType(this.writePageStructure) === 'function';
 
     if (userWrite) {
@@ -162,8 +164,8 @@ class DrawPageStructure {
     spinner.clear().succeed(`(succeed) skeleton screen has created and output to ${calcText(this.filepath)}`);
 
     if (this.headless) {
-      await pp.browser.close();
-      process.exit(0);
+      // await pp.browser.close();
+      // process.exit(0);
     }
   }
 }
